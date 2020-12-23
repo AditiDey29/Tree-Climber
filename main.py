@@ -7,6 +7,7 @@ import sys
 pygame.init()
 background = pygame.image.load('forestfinal.jpg')
 
+#defining various variables
 WIDTH = 600
 HEIGHT = 600
 
@@ -27,9 +28,10 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 score = 0
 clock = pygame.time.Clock()
-myFont = pygame.font.SysFont("monospace", 35)
+myFont = pygame.font.SysFont("hack", 35)
 life = 3
 
+#creating multiple enemies
 def draw_enemies(enemy_list):
 	for enemy_pos in enemy_list:
 		pygame.draw.rect(screen, YELLOW, (enemy_pos[0], enemy_pos[1], enemy_size, enemy_size))
@@ -48,10 +50,12 @@ def update_enemy_positions(enemy_list, score):
 			score += 1
 	return score
 
+#making the speed proportional to score
 def set_level(score, SPEED):
 	SPEED = score + 5
 	return SPEED
 
+#checking collision
 def detect_collision(player_pos, enemy_pos):
 	px = player_pos[0]
 	py = player_pos[1]
@@ -76,6 +80,7 @@ while not game_over:
 	screen.fill(BACKGROUND_COLOR)
 	screen.blit(background, (0,0))
 
+	#the main loop for the game
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			sys.exit()
@@ -96,6 +101,7 @@ while not game_over:
 
 			player_pos = [x,y]
 
+	#calling all the fuctions		
 	drop_enemies(enemy_list)
 	score = update_enemy_positions(enemy_list, score)
 	SPEED = set_level(score, SPEED)
