@@ -101,7 +101,7 @@ while not game_over:
 	SPEED = set_level(score, SPEED)
 
 	text = "Score:" + str(score)
-	label = myFont.render(text, 1, YELLOW)
+	label = myFont.render(text, 1, YELLOW,[0,0,0])
 	screen.blit(label, (WIDTH-200, HEIGHT-40))
 
 	if collision_check(enemy_list, player_pos):
