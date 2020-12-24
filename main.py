@@ -42,11 +42,11 @@ def drop_enemies(enemy_list):
 		y_pos = 0
 		enemy_list.append([x_pos, y_pos])
 def update_enemy_positions(enemy_list, score):
-	for idx, enemy_pos in enumerate(enemy_list):
+	for enemy_pos in (enemy_list):
 		if enemy_pos[1] >= 0 and enemy_pos[1] < HEIGHT:
 			enemy_pos[1] += SPEED
 		else:
-			enemy_list.pop(idx)
+			enemy_list.remove(enemy_pos)
 			score += 1
 	return score
 
