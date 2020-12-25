@@ -17,12 +17,10 @@ pygame.display.set_icon(icon)
 #defining various variables
 WIDTH = 600
 HEIGHT = 600
-
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 BLUE = (0,0,255)
 YELLOW = (255,255,0)
-BACKGROUND_COLOR = (0,0,0)
-BLACK = (0,0,0)
 
 player_size = 50
 player_pos = [200, HEIGHT-250]
@@ -31,12 +29,10 @@ enemy_size = 50
 enemy_pos = [random.choice([0,200,400,550]), 0]
 enemy_list = [enemy_pos]
 
-SPEED = 2
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-
 score = 0
+SPEED = 2
 clock = pygame.time.Clock()
-myFont = pygame.font.SysFont("hack", 35)
+scorefont = pygame.font.SysFont("hack", 35)
 
 #creating multiple enemies
 def draw_enemies(enemy_list):
@@ -82,7 +78,6 @@ def collision_check(enemy_list, player_pos):
 game_over = False
 while not game_over:
 
-	screen.fill(BACKGROUND_COLOR)
 	screen.blit(background, (0,0))
 
 	#the main loop for the game
@@ -98,7 +93,7 @@ while not game_over:
 			if event.key == pygame.K_LEFT and x>=200:
 				x -= 200
 			if event.key == pygame.K_LEFT and x == 200:
-				x-=180
+				x -= 180
 			elif event.key == pygame.K_RIGHT and x<=400:
 				x += 200
 			elif event.key == pygame.K_RIGHT and x == 400:
@@ -111,8 +106,9 @@ while not game_over:
 	score = update_enemy_positions(enemy_list, score)
 	SPEED = set_level(score, SPEED)
 
+	#displaying the score
 	text = "Score:" + str(score)
-	label = myFont.render(text, 1, YELLOW,[0,0,0])
+	label = scorefont.render(text, 1, YELLOW,[0,0,0])
 	screen.blit(label, (WIDTH-200, HEIGHT-40))
 
 	if collision_check(enemy_list, player_pos):
