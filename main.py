@@ -1,16 +1,23 @@
 #I have copied most of the code including all the function definitions and the pygame concepts from a youtube video. LINK:https://youtu.be/-8n91btt5d8
 #Background Image: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.1zoom.me%2Fen%2Fwallpaper%2F521300%2Fz12982.8%2F600x800&psig=AOvVaw3nNUocjoskwev9H_7dZZz6&ust=1608773930652000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKC2vYf84u0CFQAAAAAdAAAAABAD.jpg
+#Icon : https://www.flaticon.com/authors/freepik
 import pygame
 import random
 import sys
 
+#Initialising pygame and setting the background
 pygame.init()
 background = pygame.image.load('forestfinal.jpg')
+
+#Adding the title and icon
 pygame.display.set_caption('Tree Climber')
+icon = pygame.image.load('jungle.png')
+pygame.display.set_icon(icon)
 
 #defining various variables
 WIDTH = 600
 HEIGHT = 600
+
 
 BLUE = (0,0,255)
 YELLOW = (255,255,0)
