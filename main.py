@@ -6,6 +6,7 @@ import sys
 
 pygame.init()
 background = pygame.image.load('forestfinal.jpg')
+pygame.display.set_caption('Tree Climber')
 
 #defining various variables
 WIDTH = 600
@@ -29,7 +30,6 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 score = 0
 clock = pygame.time.Clock()
 myFont = pygame.font.SysFont("hack", 35)
-life = 3
 
 #creating multiple enemies
 def draw_enemies(enemy_list):
@@ -73,8 +73,6 @@ def collision_check(enemy_list, player_pos):
 	return False
 
 game_over = False
-if life == 0:
-	game_over = True
 while not game_over:
 
 	screen.fill(BACKGROUND_COLOR)
@@ -101,7 +99,7 @@ while not game_over:
 
 			player_pos = [x,y]
 
-	#calling all the fuctions		
+	#calling all the fuctions
 	drop_enemies(enemy_list)
 	score = update_enemy_positions(enemy_list, score)
 	SPEED = set_level(score, SPEED)
@@ -111,9 +109,6 @@ while not game_over:
 	screen.blit(label, (WIDTH-200, HEIGHT-40))
 
 	if collision_check(enemy_list, player_pos):
-		life = life - 1
-
-	if life==0:
 		game_over=True
 		break
 	draw_enemies(enemy_list)
